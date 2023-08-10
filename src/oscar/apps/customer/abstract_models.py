@@ -120,6 +120,37 @@ class AbstractUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         # see Oscar ticket #1127, Django ticket #19218
         self._migrate_alerts_to_user()
 
+class AbstrctUserDetails(models.Model):
+    """
+    Additional user details
+    """
+    user = models.OneToOneField(
+        AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("User"),
+    )
+    title = models.CharField(max_length=64, required=True)
+    country = models.ForeignKey(
+        "address.Country", on_delete=models.CASCADE, verbose_name=_("Country")
+    )
+    state = models.CharField(_("State/County"), max_length=255, blank=True)
+    company_name = models.CharField(max_length=255, blank=True)
+    website_url = models.CharField(max_length=255, blank=True)
+    strip_id = models.CharField(max_length=255, blank=True)
+    phone = models.CharField(max_length=255, blank=True)
+    about_company = models.TextField(blank=True)
+    about_you = models.TextField(blank=True)
+    logo = models.TextField(blank=True) # Use for company's logo or user's profile picture
+    rep_profile = models.TextField(blank=True)
+
+    # Additional information for the user
+    city = models.CharField(max_length=255, blank=True)
+    age_range = models.CharField(max_length=255, blank=True)
+    income_level = models.CharField(max_length=255, blank=True)
+    education = models.CharField(max_length=255, blank=True)
+    gender = models.CharField(max_length=255, blank=True)
+    marital_status = models.CharField(max_length=255, blank=True)
+    family_type= models.CharField(max_length=255, blank=True)
+    occupation = models.CharField(max_length=255, blank=True)
+    favourite = models.CharField(max_length=255, blank=True)
 
 class AbstractProductAlert(models.Model):
     """
