@@ -127,7 +127,7 @@ class AbstrctUserDetails(models.Model):
     user = models.OneToOneField(
         AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("User"),
     )
-    title = models.CharField(max_length=64, required=True)
+    title = models.CharField(max_length=64)
     country = models.ForeignKey(
         "address.Country", on_delete=models.CASCADE, verbose_name=_("Country")
     )
