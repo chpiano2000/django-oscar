@@ -66,6 +66,10 @@ class AbstractUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
             "active. Unselect this instead of deleting accounts."
         ),
     )
+    role = models.CharField(
+        max_length=255, 
+        blank=False
+    )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
     objects = UserManager()
