@@ -9,9 +9,10 @@ from django.utils.translation import gettext_lazy as _
 from oscar.apps.communication.managers import CommunicationTypeManager
 from oscar.core.compat import AUTH_USER_MODEL
 from oscar.models.fields import AutoSlugField
+from ...models.uuid_models import UUIDModel
 
 
-class AbstractEmail(models.Model):
+class AbstractEmail(UUIDModel):
     """
     This is a record of an email sent to a customer.
     """
@@ -49,7 +50,7 @@ class AbstractEmail(models.Model):
             }
 
 
-class AbstractCommunicationEventType(models.Model):
+class AbstractCommunicationEventType(UUIDModel):
     """
     A 'type' of communication.  Like an order confirmation email.
     """
@@ -192,7 +193,7 @@ class AbstractCommunicationEventType(models.Model):
         return self.category == self.USER_RELATED
 
 
-class AbstractNotification(models.Model):
+class AbstractNotification(UUIDModel):
     recipient = models.ForeignKey(
         AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="notifications"
     )
